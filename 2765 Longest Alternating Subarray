@@ -1,0 +1,22 @@
+class Solution {
+    public int alternatingSubarray(int[] nums) {
+        int n = nums.length;
+        int maxLen = -1;
+        for (int i = 0; i < n - 1; i++) {
+            if (nums[i + 1] != nums[i] + 1) {
+                continue;
+            }
+            int len = 2;
+            int a = nums[i];    
+            int b = nums[i] + 1;
+            for (int j = i + 2; j < n; j++) {
+                int expected = (j - i) % 2 == 0 ? a : b;
+                if (nums[j] == expected) {
+                    len++;
+                } else {
+                    break;
+                }
+            }
+            maxLen = Math.max(maxLen, len);
+        }
+        return maxLen;}}
