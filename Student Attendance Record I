@@ -1,0 +1,19 @@
+class Solution {
+    public boolean checkRecord(String s) {
+        int absences = 0;
+        int lateCount = 0;
+        for (char c : s.toCharArray()) {
+            if (c == 'A') {
+                absences++;
+                if (absences >= 2) return false; 
+            }
+            if (c == 'L') {
+                lateCount++;
+                if (lateCount >= 3) return false; 
+            } else {
+                lateCount = 0;
+            }
+        }
+        return true;
+    }
+}
