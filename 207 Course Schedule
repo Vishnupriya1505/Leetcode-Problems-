@@ -1,0 +1,21 @@
+class Solution {
+    public boolean canFinish(int n, int[][] p) {
+        List<Integer>[] g = new ArrayList[n];
+        for (int i = 0; i < n; i++) g[i] = new ArrayList<>();
+        for (int[] e : p) g[e[1]].add(e[0]);
+        
+        int[] v = new int[n];
+        for (int i = 0; i < n; i++)
+            if (!dfs(g, v, i)) return false;
+        return true;
+    }
+    boolean dfs(List<Integer>[] g, int[] v, int i) {
+        if (v[i] == 1) return false;
+        if (v[i] == 2) return true;
+        v[i] = 1;
+        for (int j : g[i])
+            if (!dfs(g, v, j)) return false;
+        v[i] = 2;
+        return true;
+    }
+}
