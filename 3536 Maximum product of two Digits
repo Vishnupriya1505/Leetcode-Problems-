@@ -1,0 +1,17 @@
+class Solution {
+    public int maxProduct(int n) {
+        ArrayList<Integer> digit = new ArrayList<>();
+        while(n>0){
+            digit.add(n%10);
+            n/=10;
+        }
+        int maxprod=0;
+        for(int i=0;i<digit.size();i++){
+            for(int j=i+1;j<digit.size();j++){
+                int prod = digit.get(i)*digit.get(j);
+                maxprod=Math.max(maxprod,prod);
+            }
+        }
+        return maxprod;        
+    }
+}
